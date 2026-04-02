@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotspot RAEVAL</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+}
+
+.container{
+    padding:30px 20px;
+}
+
+.judul{
+    font-size:28px;
+    font-weight:bold;
+    color:#FFD700;
+    margin-top:20px;
+}
+
+.ramadhan{
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#25D366;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.footer{
+    margin-top:20px;
+    font-size:14px;
+    color:#ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="judul">🌙 Bergabung di Hotspot RAEVAL 🌙</div>
+<div class="ramadhan">Selamat Menunaikan Ibadah Puasa</div>
+
+<div class="card">
+
+<!-- LOGIN CHAP SUPPORT -->
+$(if chap-id)
+<form name="sendin" action="$(link-login-only)" method="post">
+<input type="hidden" name="username" />
+<input type="hidden" name="password" />
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+</form>
+
+<script src="/md5.js"></script>
+<script>
+function doLogin() {
+document.sendin.username.value = document.login.username.value;
+document.sendin.password.value =
+hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+document.sendin.submit();
+return false;
+}
+</script>
+$(endif)
+
+<form name="login" action="$(link-login-only)" method="post"
+$(if chap-id) onsubmit="return doLogin()" $(endif)>
+
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+
+<input type="text" name="username" placeholder="Username" value="$(username)" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<button type="submit">LOGIN</button>
+
+</form>
+
+</div>
+
+<div class="footer">
+Ramadhan Kareem | Powered by MikroTik
+</div>
+
+</div>
+
+<script>
+document.login.username.focus();
+</script>
+
+</body>
+</html>
